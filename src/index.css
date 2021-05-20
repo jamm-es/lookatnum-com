@@ -1,0 +1,133 @@
+/* resets from https://dev.to/hankchizljaw/a-modern-css-reset-6p3. changes at the end. */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+
+/* default and simple styles */
+
+body {
+  background-color: #222;
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  font-family: 'Helvetica Neue Medium', 'Helvetica Neue', 'Neue Helvetica', 'Helvetica', sans-serif;
+  font-size: 20px;
+}
+
+main {
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #333;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-top: 1em;
+}
+
+main p:first-child, main h1:first-child, main h2:first-child, main h3:first-child, main h4:first-child, main h5:first-child, main h6:first-child {
+  margin-top: -0.1em;
+}
+
+main p:last-child, main h1:last-child, main h2:last-child, main h3:last-child, main h4:last-child, main h5:last-child, main h6:last-child {
+  margin-bottom: -0.1em
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  font-size: 36px;
+}
+
+a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #bbb;
+}
+
+.logo {
+  font-family: 'Consolas', monospace;
+}
