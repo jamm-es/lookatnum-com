@@ -6,8 +6,8 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className='not-found'>
-        <h1>404 Not Found</h1>
-        <p><a href='/'>Return to homepage</a></p>
+        <h1>Page Not Found</h1>
+        <p><a href='/'>Return to home</a></p>
       </div>
     );
   }

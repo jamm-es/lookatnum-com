@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Helmet from 'react-helmet';
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,6 +18,11 @@ import {RottenTomatoes} from './rotten-tomatoes';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Helmet
+      titleTemplate='%s | look@num'
+      defaultTitle='look@num'
+    >
+    </Helmet>
     <Router>
       <main>
         <Switch>

@@ -9,7 +9,6 @@ export default class Menu extends React.Component {
     this.state = {
       minCritic: props.initialMinCritic,
       minAudience: props.initialMinAudience,
-      minBoxOffice: props.initialMinBoxOffice,
       completedInitialUpdate: false
     };
   }
@@ -24,7 +23,7 @@ export default class Menu extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='seperate'>
         <p>Filters:</p>
         <p>
           <label>
@@ -35,6 +34,8 @@ export default class Menu extends React.Component {
               <option value={25}>25+</option>
               <option value={50}>50+</option>
               <option value={100}>100+</option>
+              <option value={150}>150+</option>
+              <option value={200}>200+</option>
               <option value={250}>250+</option>
               <option value={500}>500+</option>
             </select>
@@ -60,15 +61,6 @@ export default class Menu extends React.Component {
             </select>
           </label>
         </p>
-        <p>
-          <label>
-          Minimum box office:
-          <select value={this.state.minBoxOffice} onChange={e => this.setState(() => ({minBoxOffice: e.target.value}))}>
-            <option value='4'>test1</option>
-            <option value='5'>test2</option>
-          </select>
-        </label>
-        </p>
         
       </div>
     )
@@ -79,5 +71,4 @@ Menu.propTypes = {
   handle: PropTypes.func.isRequired,
   initialMinCritic: PropTypes.number.isRequired,
   initialMinAudience: PropTypes.number.isRequired,
-  initialMinBoxOffice: PropTypes.number.isRequired
 }
