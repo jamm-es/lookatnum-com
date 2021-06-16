@@ -14,8 +14,6 @@ import './index.css';
 import {Home, Footer, NotFound} from './main';
 import {RottenTomatoes} from './rotten-tomatoes';
 
-// import reportWebVitals from './reportWebVitals';
-
 ReactDOM.render(
   <React.StrictMode>
     <Helmet

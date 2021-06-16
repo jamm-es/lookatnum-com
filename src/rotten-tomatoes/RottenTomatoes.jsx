@@ -2,7 +2,7 @@ import React from 'react';
 import Plot from 'react-plotly.js';
 import Helmet from 'react-helmet';
 import * as d3 from 'd3';
-import rawData from './movies_formatted_filter.csv';
+import rawData from './movies_formatted.csv';
 import Menu from './Menu';
 import Highlight from './Highlight';
 import HoverCheckbox from './HoverCheckbox'
