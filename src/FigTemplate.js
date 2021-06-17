@@ -52,6 +52,14 @@ export const layout = {
     l: 60,
     r: 60,
     b: 60,
+  },
+  hoverlabel: {
+    bgcolor: '#333333',
+    bordercolor: '#bbbbbb',
+    font: {
+      size: 15,
+      color: '#ffffff'
+    }
   }
 };
 
@@ -72,5 +80,7 @@ small.margin = {
   r: 40,
   b: 40
 }
+
+small.hoverlabel.font.size = 12;
 
 export const smallLayout = small;
