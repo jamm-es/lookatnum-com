@@ -130,7 +130,7 @@ export default class RottenTomatoes extends React.Component {
             {
               x: this.state.filtered.map(d => d['critic_percent']),
               y: this.state.filtered.map(d => d['audience_percent']),
-              type: 'scatter',
+              type: 'scattergl',
               mode: 'markers',
               customdata: this.state.filtered,
               hoverinfo: this.state.hideHover ? 'skip' : '',
@@ -164,7 +164,7 @@ export default class RottenTomatoes extends React.Component {
             {
               x: this.state.search.map(d => d['critic_percent']),
               y: this.state.search.map(d => d['audience_percent']),
-              type: 'scatter',
+              type: 'scattergl',
               mode: 'markers',
               customdata: this.state.search,
               hovertemplate: '<b>%{customdata.title}</b><br>' +
@@ -207,7 +207,7 @@ export default class RottenTomatoes extends React.Component {
             {
               x: [0, 100],
               y: [0, 100],
-              type: 'scatter',
+              type: 'scattergl',
               mode: 'lines',
               hoverinfo: 'skip',
               line: {
@@ -220,7 +220,7 @@ export default class RottenTomatoes extends React.Component {
           layout={this.state.windowWidth > 800 ? layout : smallLayout}
           config={{displayModeBar: false}}
           useResizeHandler={true}
-          style={{width: 'min(900px, 90vmin)', height: 'min(900px, 90vmin)', margin: '0 auto'}}
+          style={{width: 'min(900px, min(90vmin, 100vw - 40px))', height: 'min(900px, min(90vmin, 100vw - 40px))', margin: '0 auto'}}
         />
         <ZoomCheckbox handle={this.handleZoomCheckbox.bind(this)}/>
         <br />

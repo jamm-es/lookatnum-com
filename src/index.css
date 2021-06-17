@@ -94,7 +94,7 @@ body {
 }
 
 main {
-  width: 95%;
+  width: 100%;
   max-width: 980px;
   margin: 0 auto;
   padding: 40px;
@@ -155,7 +155,7 @@ input[type='checkbox'] {
   }
   
   main {
-    padding: 40px;
+    padding: 20px;
     width: 100%;
   }
   
