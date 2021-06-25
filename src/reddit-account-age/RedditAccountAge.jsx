@@ -178,7 +178,7 @@ export default class RedditAccountAge extends React.Component {
       .attr('overflow', 'visible');
 
     const hoverInfo = hoverSpillableSVG.append('svg:g')
-      .attr('display', 'none')
+      .attr('transform', 'translate(-9999,0)')
     
     hoverInfo.append('svg:line')
       .attr('y2', this.chartHeight)
@@ -239,6 +239,8 @@ export default class RedditAccountAge extends React.Component {
 
     const updateHovers = (e, d) => {        
       const mouse = d3.pointer(e);
+
+      console.log('here!');
 
       let equivDate = this.screenPosToDate(mouse[0]);
       equivDate = new Date(equivDate.setDate(equivDate.getDate() + 15)); // rounds to nearest month
@@ -360,26 +362,12 @@ export default class RedditAccountAge extends React.Component {
       .on('mousemove', updateHovers)
       .on('mouseenter', () => {
         hoverInfo
-          .attr('display', undefined);
+          .attr('display', null);
       })
       .on('mouseleave', () => {
         hoverInfo
           .attr('display', 'none');
       })
-      .on('touchstart', (e, d) => {
-        try{
-          const mouse = d3.pointer(e, hoverSpillableSVG);
-          if(mouse[0] < 0 || mouse[0] > this.chartWidth || mouse[1] < 0 || mouse[1] > this.chartHeight) {
-            hoverInfo.attr('display', 'none');
-          }
-          else {
-            hoverInfo.attr('display', undefined);
-          }
-        }
-        catch {
-        }
-      })
-      .on('touchmove', updateHovers);
   
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
     this.updateWindowDimensions.bind(this)();
