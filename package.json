@@ -7,6 +7,7 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "d3": "^6.7.0",
+    "d3-tip": "^0.9.1",
     "fuse.js": "^6.4.6",
     "node-sass": "^5.0.0",
     "plotly.js": "^1.58.4",
@@ -17,6 +18,8 @@
     "react-plotly.js": "^2.5.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "rsuite": "^4.10.2",
+    "tippy.js": "^6.3.1",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

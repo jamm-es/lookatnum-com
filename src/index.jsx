@@ -13,6 +13,7 @@ import './index.css';
 
 import {Home, Footer, NotFound} from './main';
 import {RottenTomatoes} from './rotten-tomatoes';
+import {RedditAccountAge} from './reddit-account-age';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +26,8 @@ ReactDOM.render(
       <main>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route exact path='/rotten-tomatoes' component={RottenTomatoes}/>
+          <Route exact path='/rotten-tomatoes' component={RottenTomatoes} />
+          <Route exact path='/reddit-account-age' component={RedditAccountAge}/>
           <Route exact path='/notfound' component={NotFound} />
           <Redirect to='/notfound'/>
         </Switch>
@@ -40,8 +42,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-//reportWebVitals();

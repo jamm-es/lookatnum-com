@@ -1,0 +1,1 @@
+export {default as RedditAccountAge} from './RedditAccountAge.jsx';

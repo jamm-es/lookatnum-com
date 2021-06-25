@@ -91,7 +91,7 @@ export default class RottenTomatoes extends React.Component {
           d['item']['critic_number'] >= this.state.settings.minCritic && 
           d['item']['audience_number'] >= this.state.settings.minAudience
         ).map(d => d['item'])
-      }));
+      }));  
     }, 250);
   }
 

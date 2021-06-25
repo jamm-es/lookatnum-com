@@ -13,6 +13,7 @@ export default class Home extends React.Component {
         <p>Projects:</p>
         <ul>
           <li><a href="/rotten-tomatoes">Rotten Tomatoes Critic vs. Audience Score</a></li>
+          <li><a href='/reddit-account-age'>Reddit Account Ages Over Time</a></li>
         </ul>
 
         <br />

@@ -1,0 +1,42 @@
+#fig {
+  width: min(900px, min(90vmin, 100vw - 40px));
+  height: calc(min(900px, min(90vmin, 100vw - 40px)) * 3 / 4)
+}
+
+
+
+.background {
+  fill: #222222;
+}
+
+text {
+  font-family: 'Helvetica Neue Medium', 'Helvetica Neue', 'Neue Helvetica', 'Helvetica', sans-serif;
+  font-size: 20px;
+  fill: #FFFFFF;
+}
+
+.domain {
+  stroke: none;
+}
+
+.tick line {
+  stroke: #333333;
+  stroke-width: 2;
+}
+
+.tick text {
+  font-size: 15px;
+  fill: #bbbbbb;
+}
+
+@media (max-width: 600) {
+
+  text {
+    font-size: 16px;
+  }
+
+  .tick text {
+    font-size: 12px;
+  }
+
+}
