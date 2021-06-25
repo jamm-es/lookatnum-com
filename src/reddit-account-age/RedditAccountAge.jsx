@@ -444,9 +444,9 @@ export default class RedditAccountAge extends React.Component {
         <Helmet>
           <title>Reddit Account Ages</title>
         </Helmet>
-        <h1>Frequency of Reddit Comments, Split by Commentors' Account Age</h1>
+        <h1>Frequency of Reddit Comments, Split by Commenters' Account Age</h1>
         <ul>
-          <li className='seperate'>Each colored stack represents the year in which the commentors' account was created.</li>
+          <li className='seperate'>Each colored stack represents the year in which the commenters' account was created.</li>
           <li className='seperate'>Calculations for estimated comment frequency and account age proportions were done by taking a randomized sample of all Reddit comments at even intervals till January 1, 2006.</li>
           <li className='seperate'>Mouse over to view proportional breakdown per account year.</li>  
         </ul>
