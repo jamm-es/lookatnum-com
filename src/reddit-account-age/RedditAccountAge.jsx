@@ -63,6 +63,7 @@ export default class RedditAccountAge extends React.Component {
       .attr('id', 'fig')
       .attr('viewBox', [0, -this.chartHeight*0.05, this.chartWidth*1.1, this.chartHeight*1.05])
       .attr('overflow', 'visible')
+      .attr('class', 'seperate')
   
     fig.append('svg:rect')
       .attr('width', this.chartWidth)
