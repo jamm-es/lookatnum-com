@@ -28,8 +28,7 @@ ReactDOM.render(
           <Route exact path='/' component={Home} />
           <Route exact path='/rotten-tomatoes' component={RottenTomatoes} />
           <Route exact path='/reddit-account-age' component={RedditAccountAge}/>
-          <Route exact path='/notfound' component={NotFound} />
-          <Redirect to='/notfound'/>
+          <Route component={NotFound} />
         </Switch>
       </main>
 
@@ -41,4 +40,4 @@ ReactDOM.render(
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
-);
+);  

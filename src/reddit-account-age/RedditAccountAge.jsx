@@ -19,7 +19,7 @@ export default class RedditAccountAge extends React.Component {
     super(props);
     this.svgRef = React.createRef();
     this.state = {
-      windowWidth: 0,
+      windowWidth: 1000,
       widthMultiplier: 1,
       dateSlider: [2006, 2021]
     }
@@ -48,6 +48,8 @@ export default class RedditAccountAge extends React.Component {
   updateWindowDimensions() {
     this.setState({ 
       windowWidth: window.innerWidth,
+      textMultiplier: Math.max(980 / window.innerWidth, 1),
+      labelOffset: window.width < 800 ? 10 : 0
     });
   };
 
@@ -73,6 +75,7 @@ export default class RedditAccountAge extends React.Component {
 
     fig.append('svg:text')
       .text('Date')
+      .attr('id', 'x-axis')
       .attr('text-anchor', 'middle')
       .attr('x', this.chartWidth*0.6)
       .attr('class', 'normal')
@@ -80,6 +83,7 @@ export default class RedditAccountAge extends React.Component {
 
     fig.append('svg:text')
       .text('Estimated comments per second')
+      .attr('id', 'y-axis')
       .attr('text-anchor', 'middle')
       .attr('transform', `translate(${this.chartWidth*0.05}, ${this.chartHeight*0.5}) rotate(-90)`)
       .attr('class', 'normal')
@@ -371,7 +375,12 @@ export default class RedditAccountAge extends React.Component {
       })
   
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
-    this.updateWindowDimensions.bind(this)();
+    await this.updateWindowDimensions.bind(this)();
+    if(this.state.windowWidth <= 800) {
+      this.xAxis.ticks(d3.timeYear.every(2));
+      this.xAxisG.call(this.xAxis);
+    }
+    
   }
 
   componentWillUnmount() {
@@ -386,15 +395,22 @@ export default class RedditAccountAge extends React.Component {
       .range(this.x.domain())
 
     // use month + year ticks when date range is less than 4 years
-    if(endDate.getTime() - startDate.getTime() < 4*365*24*60*60*1000) {
+    if(endDate.getTime() - startDate.getTime() < 3*365*24*60*60*1000 && endDate.getTime() - startDate.getTime() > 1*365*24*60*60*1000 && this.state.windowWidth <= 800) {
       this.xAxis
         .tickFormat(d3.timeFormat('%b %Y'))
-        .ticks(10); // default value, use auto-spacing
+        .ticks(d3.timeMonth.every(6));
+    }
+    else if(endDate.getTime() - startDate.getTime() < 4*365*24*60*60*1000) {
+      this.xAxis
+        .tickFormat(d3.timeFormat('%b %Y'))
+        .ticks(this.state.windowWidth <= 800 ? 5 : 10); // default value, use auto-spacing
     }
     else {
       this.xAxis
         .tickFormat(d3.timeFormat('%Y'))
-        .ticks(d3.timeYear.every(1));
+        .ticks(d3.timeYear.every(this.state.windowWidth <= 800 ? 2 : 1));
+
+      
     }
 
     this.xAxisG.transition()
@@ -415,6 +431,20 @@ export default class RedditAccountAge extends React.Component {
       .duration(this.millisecondsPerMonth)
       .ease(this.easeFunc)
       .attr('d', this.areaGen);
+
+    if(this.state.windowWidth > 800) {
+      d3.selectAll('text').style('font-size', `${20*this.state.textMultiplier}px`);
+      d3.selectAll('.tick text').style('font-size', `${15*this.state.textMultiplier}px`);
+    }
+    else {
+      d3.selectAll('text').style('font-size', `${16*this.state.textMultiplier}px`);
+      d3.selectAll('.tick text').style('font-size', `${12*this.state.textMultiplier}px`);
+      d3.select('#x-axis')
+        .attr('y', this.chartHeight*1.07+25);
+      d3.select('#y-axis')
+        .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
+    }
+
   }
 
   handleDateRangeChange(value) {
@@ -428,6 +458,19 @@ export default class RedditAccountAge extends React.Component {
   }
 
   render() {
+    console.log(d3.selectAll('text'))
+    if(this.state.windowWidth > 800) {
+      d3.selectAll('text').style('font-size', `${20*this.state.textMultiplier}px`);
+      d3.selectAll('.tick text').style('font-size', `${15*this.state.textMultiplier}px`);
+    }
+    else {
+      d3.selectAll('text').style('font-size', `${16*this.state.textMultiplier}px`);
+      d3.selectAll('.tick text').style('font-size', `${12*this.state.textMultiplier}px`);
+      d3.select('#x-axis')
+        .attr('y', this.chartHeight*1.07+25);
+      d3.select('#y-axis')
+        .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
+  }
     return (
       <div>
         <Helmet>
