@@ -216,7 +216,8 @@ export default class RedditAccountAge extends React.Component {
       .attr('stroke',  d => hoverColorScale(d))
       .attr('stroke-width', 2);
     
-    const hoverTips = hoverG.append('svg:g');
+    const hoverTips = hoverG.append('svg:g')
+      .attr('id', 'hover-g');
 
     const hoverTipsBackground = hoverTips.append('svg:rect')
       .attr('x', this.hoverTipHorizontalGap)
@@ -440,10 +441,11 @@ export default class RedditAccountAge extends React.Component {
       d3.selectAll('text').style('font-size', `${16*this.state.textMultiplier}px`);
       d3.selectAll('.tick text').style('font-size', `${12*this.state.textMultiplier}px`);
       d3.select('#x-axis')
-        .attr('y', this.chartHeight*1.07+25);
+      .attr('y', this.chartHeight*1.07+25);
       d3.select('#y-axis')
-        .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
+      .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
     }
+    d3.selectAll('#hover-g text').style('font-size', '15px');
 
   }
 
@@ -467,10 +469,11 @@ export default class RedditAccountAge extends React.Component {
       d3.selectAll('text').style('font-size', `${16*this.state.textMultiplier}px`);
       d3.selectAll('.tick text').style('font-size', `${12*this.state.textMultiplier}px`);
       d3.select('#x-axis')
-        .attr('y', this.chartHeight*1.07+25);
+      .attr('y', this.chartHeight*1.07+25);
       d3.select('#y-axis')
-        .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
-  }
+      .attr('transform', `translate(${this.chartWidth*0.05-20}, ${this.chartHeight*0.5}) rotate(-90)`)
+    }
+    d3.selectAll('#hover-g text').style('font-size', '15px');
     return (
       <div>
         <Helmet>
