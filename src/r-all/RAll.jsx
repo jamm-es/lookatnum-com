@@ -337,17 +337,12 @@ export default class RAll extends React.Component {
 
     if(node.url.slice(0, 17) === 'https://i.redd.it') { 
       
-      this.infoBox.append('foreignObject')
+      this.infoBox.append('svg:image')
         .attr('width', this.state.windowWidth <= 800 ? this.state.chartWidth-10 : this.state.chartWidth - this.state.chartHeight-10)
-        .attr('height',this.state.windowWidth <= 800 ? this.state.chartHeightMobile-this.state.chartWidth-200 : this.state.chartWidth - this.state.chartHeight-10)
-        .attr('x', 0)
+        .attr('height',this.state.windowWidth <= 800 ? this.state.chartHeightMobile-this.state.chartWidth-titleHeight-180 : this.state.chartWidth - this.state.chartHeight-10)
         .attr('y', this.state.windowWidth <= 800 ? titleHeight + 100 : titleHeight)
-        .append('xhtml:iframe')
-          .style('width', '100%')
-          .style('height', '100%')
-          .style('border', 'none')
-          .attr('src', node.url)
-          .style('pointer-events', 'none');
+        .attr('preserveAspectRatio', 'xMidyMid meet')
+        .attr('href', node.url);
 
       description
         .attr('transform', `translate(0, ${this.state.windowWidth <= 800 ? titleHeight + 20 : titleHeight + 20 + this.state.chartWidth - this.state.chartHeight})`);
