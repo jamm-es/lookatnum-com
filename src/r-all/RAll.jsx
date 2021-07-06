@@ -393,7 +393,7 @@ export default class RAll extends React.Component {
           .text(`votes: ${voteFormat(node.score)}`);
     
         this.rankInfoLabel
-          .text(`rank: ${node.rank <= 250 ? node.rank : '250+'}`);
+          .text(`rank: ${node.rank <= 250 ? node.rank : '200+'}`);
       }
       else {
         this.rankInfoLabel
