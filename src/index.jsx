@@ -14,6 +14,7 @@ import './index.css';
 import {Home, Footer, NotFound} from './main';
 import {RottenTomatoes} from './rotten-tomatoes';
 import {RedditAccountAge} from './reddit-account-age';
+import {RAll} from './r-all';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,6 +29,7 @@ ReactDOM.render(
           <Route exact path='/' component={Home} />
           <Route exact path='/rotten-tomatoes' component={RottenTomatoes} />
           <Route exact path='/reddit-account-age' component={RedditAccountAge}/>
+          <Route exact path='/r-all' component={RAll}/>
           <Route component={NotFound} />
         </Switch>
       </main>
