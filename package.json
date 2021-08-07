@@ -10,6 +10,7 @@
     "d3-textwrap": "^3.0.0",
     "d3-tip": "^0.9.1",
     "fuse.js": "^6.4.6",
+    "matter-js": "^0.17.1",
     "node-sass": "^5.0.0",
     "plotly.js": "^1.58.4",
     "prop-types": "^15.7.2",

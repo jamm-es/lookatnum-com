@@ -9,7 +9,7 @@
   fill: #222222;
 }
 
-text {
+:not(.override) > text {
   font-family: 'Helvetica Neue Medium', 'Helvetica Neue', 'Neue Helvetica', 'Helvetica', sans-serif;
   font-size: 20px;
   fill: #FFFFFF;

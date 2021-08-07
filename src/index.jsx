@@ -15,6 +15,7 @@ import {Home, Footer, NotFound} from './main';
 import {RottenTomatoes} from './rotten-tomatoes';
 import {RedditAccountAge} from './reddit-account-age';
 import {RAll} from './r-all';
+import {CovidMap} from './covid-map';;
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
           <Route exact path='/rotten-tomatoes' component={RottenTomatoes} />
           <Route exact path='/reddit-account-age' component={RedditAccountAge}/>
           <Route exact path='/r-all' component={RAll}/>
+          <Route exact path='/covid-map' component={CovidMap}/>
           <Route component={NotFound} />
         </Switch>
       </main>

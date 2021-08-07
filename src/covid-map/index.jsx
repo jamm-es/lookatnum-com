@@ -1,0 +1,1 @@
+export {default as CovidMap} from './CovidMap';

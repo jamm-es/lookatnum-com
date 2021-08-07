@@ -14,15 +14,15 @@ export default class Home extends React.Component {
           <li><a href="/rotten-tomatoes">Rotten Tomatoes Critic vs. Audience Score</a></li>
           <li><a href='/reddit-account-age'>Reddit Account Ages Over Time</a></li>
           <li><a href='/r-all'>24 Hours of r/all</a></li>
+          <li><a href="/covid-map">Map of disproportionate COVID deaths in the U.S.</a></li>
         </ul>
 
         <br />
         <p>Links:</p>
         <ul>
           <li><a href="https://reddit.com/u/lookatnum">My reddit account</a></li>
-          <li><a href="https://github.com/jamm-es">My github</a> </li>
-          <li><a href="mailto:lookatnums@gmail.com">My email: lookatnums@gmail.com</a> </li>
-
+          <li><a href="https://github.com/jamm-es">My github</a></li>
+          <li><a href="mailto:lookatnums@gmail.com">My email: lookatnums@gmail.com</a></li>
         </ul>
       </div>
     );
