@@ -15,114 +15,26 @@ export default class CovidMap extends React.Component {
     this.scaleRef = React.createRef();
 
     this.state = {
-      frameRate: 10,
-      transitionTime: 10000,
-      stopTime: 15000
+      frameRate: 120,
+      transitionTime: 30000,
+      stopTime: 35000
     }
   }
 
   componentDidMount() {
-    const realWidth = window.innerWidth >= 900 ? 900 : window.innerWidth;
-
-    const scaleSvg = d3.select(this.scaleRef.current)
-      .attr('width', realWidth)
-      .attr('height', 100)
-      .attr('viewBox', [0, 0, realWidth, 100]);
-
-    const defs = scaleSvg.append('svg:defs');
-
-    const badGradient = defs.append('svg:linearGradient')
-      .attr('id', 'badScale')
-      .attr('x1', '0%')
-      .attr('x2', '100%')
-
-    for(let i = 0; i <= 0.5; i += 0.05) {
-      badGradient.append('svg:stop')
-        .attr('stop-color', d3.interpolateSpectral(i))
-        .attr('offset', `${i*200}%`);
-    }
-
-    const goodGradient = defs.append('svg:linearGradient')
-      .attr('id', 'goodScale')
-      .attr('x1', '0%')
-      .attr('x2', '100%')
-
-    for(let i = 0.5; i <= 1; i += 0.05) {
-      goodGradient.append('svg:stop')
-        .attr('stop-color', d3.interpolateSpectral(i))
-        .attr('offset', `${i*200-100}%`);
-    }
-
-    scaleSvg.append('svg:rect')
-      .attr('width', realWidth/2-60)
-      .attr('height', 40)
-      .attr('x', 40)
-      .attr('fill', 'url(#badScale)')
-
-    scaleSvg.append('svg:rect')
-      .attr('width', realWidth/2-60)
-      .attr('height', 40)
-      .attr('x', realWidth/2+20)
-      .attr('fill', 'url(#goodScale)')
-
-    scaleSvg.append('svg:text')
-      .attr('x', 40)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('5x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', 40+(realWidth/2-60)/2)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('2.5x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', 40+realWidth/2-60)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('1x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', 40+realWidth/2-60+40)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('1x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', 80+realWidth/2-60+(realWidth/2-60)*0.5)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('0.5x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', realWidth-40)
-      .attr('y', 50)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('0x')
-
-    scaleSvg.append('svg:text')
-      .attr('x', realWidth/2)
-      .attr('y', 80)
-      .style('font-size', 20)
-      .attr('dominant-baseline', 'hanging')
-      .attr('text-anchor', 'middle')
-      .text('deaths per capita vs. national average')
+    this.runSimulation();
   }
 
   async runSimulation() {
+
+    const params = new URLSearchParams(window.location.search)
+if(params.has('render')) {
+    console.log('in render mode!');
+    window.currentTime = 0;
+    performance.now = () => window.currentTime;
+}
+
+
     const covidData = await d3.csv(dataPath);
     const covidDataByFips = {};
     for(const data of covidData) {
@@ -152,12 +64,6 @@ export default class CovidMap extends React.Component {
 
     const inputScalerToInterpolable = d3.scaleLinear().domain([5, 1, 0]).range([0, 0.5, 1]);
     const colorScale = t => d3.interpolateSpectral(inputScalerToInterpolable(t));
-    console.log(colorScale(1), colorScale(4), colorScale(0.25));
-    console.log(
-      d3.color(colorScale(1)).darker().formatHex(),
-      d3.color(colorScale(4)).darker().formatHex(),
-      d3.color(colorScale(0.25)).darker().formatHex()
-    )
     
     const statesArea = this.svg.selectAll('g.state')
       .data(statesData)
@@ -297,35 +203,7 @@ export default class CovidMap extends React.Component {
 
   render() {
     return <div>
-      <h1>Map of Disproportionate COVID Deaths in the U.S.</h1>
-      <div style={{marginTop: 40}}>
-        <div>
-          <label>
-            Physics updates per second:
-            <input defaultValue='10' name='frameRate' value={this.state.frameRate} onChange={this.updateValue.bind(this)} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Transition time (milliseconds):
-            <input defaultValue='10000' name='transitionTime' value={this.state.transitionTime} onChange={this.updateValue.bind(this)} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Simulation stop time (milliseconds):
-            <input defaultValue='15000' name='stopTime' value={this.state.stopTime} onChange={this.updateValue.bind(this)} />
-          </label>
-        </div>
-        <div>
-          <button onClick={this.runSimulation.bind(this)}>Rerun simulation</button>
-        </div>
-      </div>
-      <p style={{marginBottom: 40}}>WARNING: Setting a high value for physics updates per second might result in a very slow simulation! In many cases, it can also result in dropped frames,
-        leading to an inaccurate sim result.
-      </p>
       <div ref={this.bodyRef}>
-        <svg ref={this.scaleRef}/>
         <svg ref={this.svgRef}/>
       </div>
     </div>
